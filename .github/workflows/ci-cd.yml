@@ -19,21 +19,17 @@ jobs:
         run: |
           echo "Using the already checked-out repository provided by GitHub Actions"
           ls -al
+          ls -al ./app # Verify contents of the subdirectory
 
       - name: Set up Node.js
         run: |
           curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash -
           sudo apt-get install -y nodejs
 
-      - name: Navigate to project directory (if needed)
-        run: |
-          if [ -d "path/to/project-directory" ]; then cd path/to/project-directory; fi
-        working-directory: ./ # Adjust this if the project is in a subdirectory
-
       - name: Install dependencies
+        working-directory: ./app
         run: npm install
-        working-directory: ./path/to/project-directory # Change if package.json is in a subdirectory
 
       - name: Run tests
+        working-directory: ./app
         run: npm test
-        working-directory: ./path/to/project-directory # Change if package.json is in a subdirectory

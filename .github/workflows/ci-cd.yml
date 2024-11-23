@@ -1,4 +1,5 @@
 name: Creating first CI and CD flow on GitHub
+
 on:
   push:
     branches: 
@@ -16,9 +17,9 @@ jobs:
     steps:
       - name: Checkout the code
         run: |
-          git clone ${{ github.repository_url }} .
-          git checkout ${{ github.ref_name }}
-
+          echo "Using the already checked-out repository provided by GitHub Actions"
+          ls -al
+          
       - name: Set up Node.js
         run: |
           curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash -
